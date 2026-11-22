@@ -15,7 +15,9 @@ import static java.awt.RenderingHints.*;
  * Animated Swing front-end for the Library Book Management System.
  * All animation is time-based and driven by one 60 fps repaint timer.
  * @author OEL Group
+ * hi this is my project
  */
+
 public class LibraryApp extends JFrame {
     static final Color BG1 = new Color(0x0B0F24), BG2 = new Color(0x1B1446), ACCENT = new Color(0x7C6CFF),
             TEAL = new Color(0x2DD4BF), TEXT = new Color(0xEEF0FF), MUTED = new Color(0x9AA0CC), RED = new Color(0xFB7185);
