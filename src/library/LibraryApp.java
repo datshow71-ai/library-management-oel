@@ -15,7 +15,7 @@ import static java.awt.RenderingHints.*;
  * Animated Swing front-end for the Library Book Management System.
  * All animation is time-based and driven by one 60 fps repaint timer.
  * @author OEL Group
- * hi this is my project
+ * Main window of the Athenaeum library management system.
  */
 
 public class LibraryApp extends JFrame {
