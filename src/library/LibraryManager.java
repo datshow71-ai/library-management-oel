@@ -72,8 +72,16 @@ public class LibraryManager {
         for (Book b : books.values()) if (b.getStatus() == s) n++;
         return n;
     }
-
+/** @return books whose title contains the given text (case-insensitive) */
+    public List<Book> searchByTitle(String text) {
+        List<Book> result = new ArrayList<>();
+        String q = clean(text).toLowerCase();
+        for (Book b : books.values())
+            if (b.getTitle().toLowerCase().contains(q)) result.add(b);
+        return result;
+ }
     private Book require(String id) throws LibraryException {
+       
         Book b = books.get(clean(id));
         if (b == null) throw new LibraryException("No book found with ID '" + clean(id) + "'.", "id");
         return b;
