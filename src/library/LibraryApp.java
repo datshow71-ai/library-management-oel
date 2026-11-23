@@ -328,11 +328,16 @@ public class LibraryApp extends JFrame {
         setGlassPane(overlay); overlay.setVisible(true);
 
         list.onSelect = b -> { idF.setText(b.getId()); titleF.setText(b.getTitle()); authorF.setText(b.getAuthor()); picker.sel = b.getStatus(); };
-        add.addActionListener(e -> run(() -> { manager.addBook(idF.getText(), titleF.getText(), authorF.getText(), picker.sel); list.selectedId = idF.getText().trim(); return "Book added to the library."; }));
+        add.addActionListener(e -> run(() -> { manager.addBook(idF.getText(), titleF.getText(), authorF.getText(), picker.sel); list.selectedId = idF.getText().trim(); return "Book added  successfullyto the library."; }));
         upd.addActionListener(e -> run(() -> { manager.updateBook(idF.getText(), titleF.getText(), authorF.getText()); return "Book details updated."; }));
         stat.addActionListener(e -> run(() -> { manager.setStatus(idF.getText(), picker.sel); return "Status set to " + picker.sel.getLabel() + "."; }));
-        del.addActionListener(e -> run(() -> { manager.deleteBook(idF.getText()); clearForm(); return "Book deleted."; }));
-        clear.addActionListener(e -> clearForm());
+del.addActionListener(e -> {
+    int choice = JOptionPane.showConfirmDialog(this,
+            "Delete book '" + idF.getText().trim() + "'? This cannot be undone.",
+            "Confirm delete", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+    if (choice == JOptionPane.YES_OPTION)
+        run(() -> { manager.deleteBook(idF.getText()); clearForm(); return "Book deleted."; });
+});        clear.addActionListener(e -> clearForm());
         search.getDocument().addDocumentListener(new DocumentListener() {
             public void insertUpdate(DocumentEvent e) { refresh(); } public void removeUpdate(DocumentEvent e) { refresh(); } public void changedUpdate(DocumentEvent e) { refresh(); } });
         refresh();
